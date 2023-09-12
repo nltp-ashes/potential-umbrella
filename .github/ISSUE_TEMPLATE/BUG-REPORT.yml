@@ -1,5 +1,5 @@
 name: Bug report
-description: File a bug report.
+description: File a bug report
 title: '[Bug]: '
 labels:
   - bug
@@ -18,27 +18,30 @@ body:
       label: Addon version
       description: Please select which version of the addon you are using
       options:
-        - v0.1.0
-        - v1.0.0
-        - v1.0.1
-        - v1.1.0
-        - v1.1.1
-        - v1.1.2
-        - v1.2.0
-        - v1.2.1
-        - v1.3.0
-        - v1.4.0
-        - v1.4.1
-        - v1.4.2
-        - v1.4.3
-        - v1.4.4
-        - v2.0.0
-        - v2.0.1
-        - v2.0.2
-        - v2.1.0
-        - v2.1.1
-        - v2.2.0
         - v2.2.1
+        - v2.2.0
+        - v2.1.1
+        - v2.1.0
+        - v2.0.2
+        - v2.0.1
+        - v2.0.0
+        - v1.4.4
+        - v1.4.3
+        - v1.4.2
+        - v1.4.1
+        - v1.4.0
+        - v1.3.0
+        - v1.2.1
+        - v1.2.0
+        - v1.1.2
+        - v1.1.1
+        - v1.1.0
+        - v1.0.1
+        - v1.0.0
+        - v0.1.0
+        - Test build (RC)
+        - Dev build
+        - Other
     validations:
       required: true
   - type: dropdown
@@ -63,7 +66,7 @@ body:
       placeholder: 'Example : "Discord: @nltp_ashes"'
   - type: checkboxes
     attributes:
-      label: Validity
+      label: Confirmation
       description: >-
         I have installed the addon following the
         [instructions](https://github.com/nltp-ashes/potential-umbrella/wiki/Installation)
