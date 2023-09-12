@@ -16,7 +16,7 @@ body:
   - type: dropdown
     attributes:
       label: Addon version
-      description: Please select which version of the addon you are using
+      description: Please select which version of the addon you are using.
       options:
         - v2.2.1
         - v2.2.0
@@ -47,7 +47,7 @@ body:
   - type: dropdown
     attributes:
       label: Game version
-      description: Please select the version of S.T.A.L.K.E.R. Anomaly you are running
+      description: Please select the version of S.T.A.L.K.E.R. Anomaly you are running.
       options:
         - 1.5.2
         - 1.5.1
@@ -56,13 +56,18 @@ body:
   - type: textarea
     attributes:
       label: Log output
-      description: Please copy and paste any relevant log output
+      description: Please copy and paste any relevant log output.
     validations:
       required: true
+  - type: textarea
+    attributes:
+      label: Illustrations
+      description: If possible, please provide links (separated by a ;) to images or videos illustrating the issue.
+      placeholder: 'Example : "https://www.youtube.com/watch?v=dQw4w9WgXcQ ; https://www.youtube.com/watch?v=dQw4w9WgXcQ"'
   - type: input
     attributes:
       label: Contact
-      description: Please provide a way for us to contact you if needed
+      description: Please provide a way for us to contact you if needed.
       placeholder: 'Example : "Discord: @nltp_ashes"'
   - type: checkboxes
     attributes:
@@ -73,6 +78,6 @@ body:
         and I made sure I have all the necessary
         [pre-requisites](https://github.com/nltp-ashes/Western-Goods#requirements).
       options:
-        - label: Yes, I have
+        - label: Yes, I have.
           required: true
 
