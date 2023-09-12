@@ -1,64 +1,75 @@
-name: Bug Report
-description: File a bug report
-title: "[Bug]: "
-labels: ["bug", "triage"]
-projects: ["octo-org/1", "octo-org/44"]
+name: Bug report
+description: File a bug report.
+title: '[Bug]: '
+labels:
+  - bug
 assignees:
-  - octocat
+  - nltp-ashes
 body:
-  - type: markdown
+  - type: textarea
     attributes:
-      value: |
-        Thanks for taking the time to fill out this bug report!
+      label: Description
+      description: Please write a short description about the issue you encountered.
+      placeholder: 'Example : "I was doing ..., when ... happened. I use ... mockpack. I modified ... in the addons files. I use a patch/tweak from ... addon."'
+    validations:
+      required: true
+  - type: dropdown
+    attributes:
+      label: Addon version
+      description: Please select which version of the addon you are using
+      options:
+        - v0.1.0
+        - v1.0.0
+        - v1.0.1
+        - v1.1.0
+        - v1.1.1
+        - v1.1.2
+        - v1.2.0
+        - v1.2.1
+        - v1.3.0
+        - v1.4.0
+        - v1.4.1
+        - v1.4.2
+        - v1.4.3
+        - v1.4.4
+        - v2.0.0
+        - v2.0.1
+        - v2.0.2
+        - v2.1.0
+        - v2.1.1
+        - v2.2.0
+        - v2.2.1
+    validations:
+      required: true
+  - type: dropdown
+    attributes:
+      label: Game version
+      description: Please select the version of S.T.A.L.K.E.R. Anomaly you are running
+      options:
+        - 1.5.2
+        - 1.5.1
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Log output
+      description: Please copy and paste any relevant log output
+    validations:
+      required: true
   - type: input
-    id: contact
     attributes:
-      label: Contact Details
-      description: How can we get in touch with you if we need more info?
-      placeholder: ex. email@example.com
-    validations:
-      required: false
-  - type: textarea
-    id: what-happened
-    attributes:
-      label: What happened?
-      description: Also tell us, what did you expect to happen?
-      placeholder: Tell us what you see!
-      value: "A bug happened!"
-    validations:
-      required: true
-  - type: dropdown
-    id: version
-    attributes:
-      label: Version
-      description: What version of our software are you running?
-      options:
-        - 1.0.2 (Default)
-        - 1.0.3 (Edge)
-      default: 0
-    validations:
-      required: true
-  - type: dropdown
-    id: browsers
-    attributes:
-      label: What browsers are you seeing the problem on?
-      multiple: true
-      options:
-        - Firefox
-        - Chrome
-        - Safari
-        - Microsoft Edge
-  - type: textarea
-    id: logs
-    attributes:
-      label: Relevant log output
-      description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
-      render: shell
+      label: Contact
+      description: Please provide a way for us to contact you if needed
+      placeholder: 'Example : "Discord: @nltp_ashes"'
   - type: checkboxes
-    id: terms
     attributes:
-      label: Code of Conduct
-      description: By submitting this issue, you agree to follow our [Code of Conduct](https://example.com)
+      label: Validity
+      description: >-
+        I have installed the addon following the
+        [instructions](https://github.com/nltp-ashes/potential-umbrella/wiki/Installation)
+        and I made sure I have all the necessary
+        [pre-requisites](https://github.com/nltp-ashes/Western-Goods#requirements).
       options:
-        - label: I agree to follow this project's Code of Conduct
+        - label: Yes, I have
           required: true
+
