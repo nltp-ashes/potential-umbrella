@@ -1,0 +1,5 @@
+inputs:
+  tag-name:
+    description: 'Build number'
+    required: true
+    default: 'vX.Y.Z'
