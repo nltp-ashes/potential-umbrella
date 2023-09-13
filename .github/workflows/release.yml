@@ -5,10 +5,14 @@ name: CI Release
 on:
   workflow_dispatch:
     inputs:
-      tag-name:
-        description: 'Build number'
+      build-ver:
+        description: 'Build version'
         required: true
         default: 'vX.Y.Z'
+      rc-ver:
+        description: 'Release candidate'
+        required: false
+        default: '1'
 
 jobs:
   release:
@@ -26,14 +30,41 @@ jobs:
       uses: 'thedoctor0/zip-release@0.7.1'
       with:
         type: 'zip'
-        filename: 'Western.Goods.${{ github.event.inputs.tag-name }}.zip'
+        filename: 'Western.Goods.${{ github.event.inputs.build-ver }}.zip'
         exclusions: '*.git*'
     
     - name: Release
       uses: 'marvinpinto/action-automatic-releases@v1.2.1'
       with:
-        files: 'Western.Goods.${{ github.event.inputs.tag-name }}.zip'
-        title: 'Western Goods ${{ github.event.inputs.tag-name }}'
-        automatic_release_tag: '${{ github.event.inputs.tag-name }}'
+        files: 'Western.Goods.${{ github.event.inputs.build-ver }}.zip'
+        title: 'Western Goods ${{ github.event.inputs.build-ver }}'
+        automatic_release_tag: '${{ github.event.inputs.build-ver }}'
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        prerelease: false
+        
+  pre-release:
+    runs-on: ubuntu-latest
+    if: ${{ github.ref_name != 'master' }}
+    permissions:
+      contents: write
+    steps:
+    - name: Checkout
+      uses: 'actions/checkout@master'
+      with:
+        submodules: recursive
+    
+    - name: Archive
+      uses: 'thedoctor0/zip-release@0.7.1'
+      with:
+        type: 'zip'
+        filename: 'Western.Goods.${{ github.event.inputs.build-ver }}.RC${{ github.event.inputs.rc-ver }}.zip'
+        exclusions: '*.git*'
+    
+    - name: Release
+      uses: 'marvinpinto/action-automatic-releases@v1.2.1'
+      with:
+        files: 'Western.Goods.${{ github.event.inputs.build-ver }}.RC${{ github.event.inputs.rc-ver }}.zip'
+        title: 'Western Goods ${{ github.event.inputs.build-ver }} RC${{ github.event.inputs.rc-ver }}'
+        automatic_release_tag: '${{ github.event.inputs.build-ver }}-rc${{ github.event.inputs.rc-ver }}'
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
         prerelease: false
