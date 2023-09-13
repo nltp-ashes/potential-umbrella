@@ -53,7 +53,7 @@ jobs:
       with: 
         tag_name: '${{ github.event.inputs.build-ver }}'
         name: 'Western Goods ${{ github.event.inputs.build-ver }}'
-        body: '${{ github.event.head_commit.message }}'
+        body: ${{ github.event.head_commit.message }}
         artifacts: 'Western.Goods.${{ github.event.inputs.build-ver }}.zip'
         prerelease: false
     
