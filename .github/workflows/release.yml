@@ -31,7 +31,9 @@ jobs:
 
     - name: Changelog
       id: changelog
-      run: 'echo ${{ github.event.head_commit.message }} > changelog.md'
+      run: |
+        echo "::set-output name=body::$(${{ github.event.head_commit.message }})"
+      # echo ${{ github.event.head_commit.message }} > changelog.md
       
     # - name: Release
     #   id: release
@@ -53,9 +55,7 @@ jobs:
       with: 
         tag_name: '${{ github.event.inputs.build-ver }}'
         name: 'Western Goods ${{ github.event.inputs.build-ver }}'
-        body: |
-          - test **markdown** [link](https://www.google.com)
-          ${{ github.event.head_commit.message }}
+        body: '${{ steps.changelog.outputs.body }}'
         artifacts: 'Western.Goods.${{ github.event.inputs.build-ver }}.zip'
         prerelease: false
     
