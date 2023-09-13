@@ -9,6 +9,7 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
+    if: ${{ github.ref_name == 'develop' }} #replace with master
     permissions:
       contents: write
     steps:
