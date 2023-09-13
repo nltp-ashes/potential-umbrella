@@ -23,43 +23,42 @@ jobs:
 
     - name: Archive
       id: archive 
-      uses: 'thedoctor0/zip-release@0.7.1'
-      with:
-        type: 'zip'
-        filename: 'Western.Goods.${{ github.event.inputs.build-ver }}.zip'
-        exclusions: '*.git*'
+      run: 'echo ${{ steps.release.outputs.data }} > changelog.md'
 
-    - name: Release
-      id: release
-      uses: 'ncipollo/release-action@v1.13.0'
-      env: 
-        GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
-      with: 
-        tag: '${{ github.event.inputs.build-ver }}'
-        name: 'Western Goods ${{ github.event.inputs.build-ver }}'
-        body: '${{ github.event.head_commit.message }}'
-        artifacts: 'Western.Goods.${{ github.event.inputs.build-ver }}.zip'
-        prerelease: false
-    
+    - name: Changelog
+      id: changelog 
+
     # - name: Release
     #   id: release
-    #   uses: 'actions/create-release@latest'
+    #   uses: 'ncipollo/release-action@v1.13.0'
     #   env: 
     #     GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
     #   with: 
-    #     tag_name: '${{ github.event.inputs.build-ver }}'
-    #     release_name: 'Western Goods ${{ github.event.inputs.build-ver }}'
-    #     body: |
-    #       ${{ github.event.head_commit.message }}
+    #     tag: '${{ github.event.inputs.build-ver }}'
+    #     name: 'Western Goods ${{ github.event.inputs.build-ver }}'
+    #     body: '${{ github.event.head_commit.message }}'
+    #     artifacts: 'Western.Goods.${{ github.event.inputs.build-ver }}.zip'
     #     prerelease: false
+    
+    - name: Release
+      id: release
+      uses: 'actions/create-release@latest'
+      env: 
+        GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+      with: 
+        tag_name: '${{ github.event.inputs.build-ver }}'
+        release_name: 'Western Goods ${{ github.event.inputs.build-ver }}'
+        body_path : './changelog.md'
+          # ${{ github.event.head_commit.message }}
+        prerelease: false
 
-    # - name: Upload Archive
-    #   id: upload-archive 
-    #   uses: actions/upload-release-asset@v1
-    #   env:
-    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    #   with:
-    #     upload_url: ${{ steps.release.outputs.upload_url }}
-    #     asset_path: './Western.Goods.${{ github.event.inputs.build-ver }}.zip'
-    #     asset_name: 'Western.Goods.${{ github.event.inputs.build-ver }}.zip'
-    #     asset_content_type: application/zip
+    - name: Upload Archive
+      id: upload-archive 
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.release.outputs.upload_url }}
+        asset_path: './Western.Goods.${{ github.event.inputs.build-ver }}.zip'
+        asset_name: 'Western.Goods.${{ github.event.inputs.build-ver }}.zip'
+        asset_content_type: application/zip
