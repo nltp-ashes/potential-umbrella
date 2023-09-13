@@ -11,7 +11,7 @@ body:
     attributes:
       label: Abstract
       description: Please write a short description of your feature request. Be concise.
-      placeholder: I would like ... to be added, similar to ... from the game called ... .
+      placeholder: 'I would like ... to be added, similar to ... from the game called ... .'
     validations:
       required: true
   - type: dropdown
@@ -31,10 +31,7 @@ body:
     attributes:
       label: Description
       description: Please write the complete, feature oriented,  description of your idea.
-      placeholder: >-
-        This ... must do ... . It should look like ... . I would like the player
-        to be able to do ... with it. Some traders from ... should offer the
-        item.
+      placeholder: 'This ... must do ... . It should look like ... . I would like the player to be able to do ... with it. Some traders from ... should offer the item.'
     validations:
       required: true
   - type: input
