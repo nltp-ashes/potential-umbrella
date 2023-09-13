@@ -27,7 +27,8 @@ jobs:
     - name: Release
       uses: 'marvinpinto/action-automatic-releases@v1.2.1'
       with:
-        files: "Western.Goods.${{ github.ref_name }}.zip"
+        files: 'Western.Goods.${{ github.ref_name }}.zip'
+        title: 'Western Goods ${{ github.ref_name }}'
+        automatic_release_tag: '${{ github.ref_name }}'
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
         prerelease: false
-        id: "automatic_releases"
