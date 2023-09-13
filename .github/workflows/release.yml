@@ -37,7 +37,8 @@ jobs:
       with: 
         tag_name: '${{ github.event.inputs.build-ver }}'
         release_name: 'Western Goods ${{ github.event.inputs.build-ver }}'
-        body: '${{ github.event.head_commit.message }}'
+        body: |
+          '${{ github.event.head_commit.message }}'
         prerelease: false
 
     - name: Upload Archive
