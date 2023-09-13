@@ -18,14 +18,14 @@ jobs:
         submodules: recursive
     
     - name: Archive
-      uses: 'thedoctor0/zip-release@latest'
+      uses: 'thedoctor0/zip-release@0.7.1'
       with:
         type: 'zip'
         filename: 'Western.Goods.${{ github.ref_name }}.zip'
         exclusions: '*.git*'
     
     - name: Release
-      uses: 'marvinpinto/action-automatic-releases@latest'
+      uses: 'marvinpinto/action-automatic-releases@v1.2.1'
       with:
         files: "Western.Goods.${{ github.ref_name }}.zip"
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
