@@ -67,4 +67,4 @@ jobs:
         title: 'Western Goods ${{ github.event.inputs.build-ver }} RC${{ github.event.inputs.rc-ver }}'
         automatic_release_tag: '${{ github.event.inputs.build-ver }}-rc${{ github.event.inputs.rc-ver }}'
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
-        prerelease: false
+        prerelease: true
