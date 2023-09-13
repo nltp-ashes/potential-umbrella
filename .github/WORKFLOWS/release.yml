@@ -1,0 +1,33 @@
+name: CI Release
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+    - name: Archive
+      uses: 'actions/checkout@master'
+      with:
+        submodules: recursive
+    
+    - name: Archive
+      uses: 'thedoctor0/zip-release@latest'
+      with:
+        type: 'zip'
+        filename: 'Western.Goods.${{ github.ref_name }}.zip'
+        exclusions: '*.git*'
+    
+    - name: Release
+      uses: 'marvinpinto/action-automatic-releases@latest'
+      with:
+        files: "Western.Goods.${{ github.ref_name }}.zip"
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        prerelease: false
+        id: "automatic_releases"
