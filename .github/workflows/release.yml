@@ -8,7 +8,7 @@ on:
       - "v*"
   workflow_dispatch:
     inputs:
-      tag-name:
+      tag_name:
         description: 'Build number'
         required: true
         default: 'vX.Y.Z'
@@ -29,14 +29,14 @@ jobs:
       uses: 'thedoctor0/zip-release@0.7.1'
       with:
         type: 'zip'
-        filename: 'Western.Goods.${{ github.ref_name }}.zip'
+        filename: 'Western.Goods.${{ env.INPUT_TAG_NAME }}.zip'
         exclusions: '*.git*'
     
     - name: Release
       uses: 'marvinpinto/action-automatic-releases@v1.2.1'
       with:
-        files: 'Western.Goods.${{ github.ref_name }}.zip'
-        title: 'Western Goods ${{ github.ref_name }}'
-        automatic_release_tag: '${{ github.ref_name }}'
+        files: 'Western.Goods.${{ env.INPUT_TAG_NAME }}.zip'
+        title: 'Western Goods ${{ env.INPUT_TAG_NAME }}'
+        automatic_release_tag: '${{ env.INPUT_TAG_NAME }}'
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
         prerelease: false
