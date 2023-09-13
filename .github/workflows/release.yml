@@ -1,10 +1,17 @@
 name: CI Release
 
+
+    
 on:
   push:
     tags:
       - "v*"
   workflow_dispatch:
+    inputs:
+      tag-name:
+        description: 'Build number'
+        required: true
+        default: 'vX.Y.Z'
 
 jobs:
   release:
