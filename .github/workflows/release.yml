@@ -31,7 +31,7 @@ jobs:
 
     - name: Changelog
       id: changelog
-      run: 'echo ${{ steps.release.outputs.data }} > changelog.md'
+      run: 'echo ${{ github.event.head_commit.message }} > changelog.md'
 
     # - name: Release
     #   id: release
