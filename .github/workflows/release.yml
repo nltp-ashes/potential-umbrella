@@ -3,12 +3,9 @@ name: CI Release
 
     
 on:
-  push:
-    tags:
-      - "v*"
   workflow_dispatch:
     inputs:
-      tag_name:
+      tag-name:
         description: 'Build number'
         required: true
         default: 'vX.Y.Z'
@@ -29,14 +26,14 @@ jobs:
       uses: 'thedoctor0/zip-release@0.7.1'
       with:
         type: 'zip'
-        filename: 'Western.Goods.${{ env.INPUT_TAG_NAME }}.zip'
+        filename: 'Western.Goods.${{ github.event.inputs.tag-name }}.zip'
         exclusions: '*.git*'
     
     - name: Release
       uses: 'marvinpinto/action-automatic-releases@v1.2.1'
       with:
-        files: 'Western.Goods.${{ env.INPUT_TAG_NAME }}.zip'
-        title: 'Western Goods ${{ env.INPUT_TAG_NAME }}'
-        automatic_release_tag: '${{ env.INPUT_TAG_NAME }}'
+        files: 'Western.Goods.${{ github.event.inputs.tag-name }}.zip'
+        title: 'Western Goods ${{ github.event.inputs.tag-name }}'
+        automatic_release_tag: '${{ github.event.inputs.tag-name }}'
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
         prerelease: false
