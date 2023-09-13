@@ -4,6 +4,7 @@ title: '[FEATURE]: '
 assignees:
   - nltp-ashes
 labels:
+  - triage
   - enhancement
 body:
   - type: textarea
