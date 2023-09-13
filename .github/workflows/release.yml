@@ -22,11 +22,16 @@ jobs:
         submodules: recursive
 
     - name: Archive
-      id: archive 
-      run: 'echo ${{ steps.release.outputs.data }} > changelog.md'
+      id: archive
+      uses: 'thedoctor0/zip-release@0.7.1'
+      with:
+        type: 'zip'
+        filename: 'Western.Goods.${{ github.event.inputs.build-ver }}.zip'
+        exclusions: '*.git*'
 
     - name: Changelog
-      id: changelog 
+      id: changelog
+      run: 'echo ${{ steps.release.outputs.data }} > changelog.md'
 
     # - name: Release
     #   id: release
