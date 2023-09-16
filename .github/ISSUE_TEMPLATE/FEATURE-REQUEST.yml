@@ -1,5 +1,5 @@
-name: Feature request
-description: File a feature request.
+name: 'Feature request'
+description: 'File a feature request.'
 title: '[FEATURE]: '
 assignees:
   - nltp-ashes
