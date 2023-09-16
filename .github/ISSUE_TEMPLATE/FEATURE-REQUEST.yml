@@ -30,7 +30,7 @@ body:
   - type: textarea
     attributes:
       label: Description
-      description: Please write the complete, feature oriented,  description of your idea.
+      description: Please write the complete, feature oriented, description of your idea.
       placeholder: 'This ... must do ... . It should look like ... . I would like the player to be able to do ... with it. Some traders from ... should offer the item.'
     validations:
       required: true
