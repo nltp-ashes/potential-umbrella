@@ -29,11 +29,11 @@ jobs:
         filename: 'Western.Goods.${{ github.event.inputs.build-ver }}.zip'
         exclusions: '*.git*'
 
-    - name: Changelog
-      id: changelog
-      run: |
-        echo "::set-output name=body::$(${{ github.event.head_commit.message }})"
-      # echo ${{ github.event.head_commit.message }} > changelog.md
+    # - name: Changelog
+    #   id: changelog
+    #   run: |
+    #     echo "::set-output name=body::$(${{ github.event.head_commit.message }})"
+    #   # echo ${{ github.event.head_commit.message }} > changelog.md
       
     # - name: Release
     #   id: release
@@ -47,37 +47,37 @@ jobs:
     #     artifacts: 'Western.Goods.${{ github.event.inputs.build-ver }}.zip'
     #     prerelease: false
     
-    - name: Release
-      id: release
-      uses: 'softprops/action-gh-release@v0.1.15'
-      env: 
-        GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
-      with: 
-        tag_name: '${{ github.event.inputs.build-ver }}'
-        name: 'Western Goods ${{ github.event.inputs.build-ver }}'
-        body: '${{ steps.changelog.outputs.body }}'
-        artifacts: 'Western.Goods.${{ github.event.inputs.build-ver }}.zip'
-        prerelease: false
-    
     # - name: Release
     #   id: release
-    #   uses: 'actions/create-release@latest'
+    #   uses: 'softprops/action-gh-release@v0.1.15'
     #   env: 
     #     GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
     #   with: 
     #     tag_name: '${{ github.event.inputs.build-ver }}'
-    #     release_name: 'Western Goods ${{ github.event.inputs.build-ver }}'
-    #     body_path : './changelog.md'
-    #       # ${{ github.event.head_commit.message }}
+    #     name: 'Western Goods ${{ github.event.inputs.build-ver }}'
+    #     body: '${{ steps.changelog.outputs.body }}'
+    #     artifacts: 'Western.Goods.${{ github.event.inputs.build-ver }}.zip'
     #     prerelease: false
+    
+    - name: Release
+      id: release
+      uses: 'actions/create-release@latest'
+      env: 
+        GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+      with: 
+        tag_name: '${{ github.event.inputs.build-ver }}'
+        release_name: 'Western Goods ${{ github.event.inputs.build-ver }}'
+        body_path : './CHANGELOG.md'
+          # ${{ github.event.head_commit.message }}
+        prerelease: false
 
-    # - name: Upload Archive
-    #   id: upload-archive 
-    #   uses: actions/upload-release-asset@v1
-    #   env:
-    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    #   with:
-    #     upload_url: ${{ steps.release.outputs.upload_url }}
-    #     asset_path: './Western.Goods.${{ github.event.inputs.build-ver }}.zip'
-    #     asset_name: 'Western.Goods.${{ github.event.inputs.build-ver }}.zip'
-    #     asset_content_type: application/zip
+    - name: Upload Archive
+      id: upload-archive 
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.release.outputs.upload_url }}
+        asset_path: './Western.Goods.${{ github.event.inputs.build-ver }}.zip'
+        asset_name: 'Western.Goods.${{ github.event.inputs.build-ver }}.zip'
+        asset_content_type: application/zip
