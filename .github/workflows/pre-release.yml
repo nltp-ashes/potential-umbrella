@@ -13,18 +13,20 @@ on:
         default: '1'
 
 jobs:
-  pre-release:
+  release:
     runs-on: ubuntu-latest
     if: ${{ github.ref_name != 'master' }}
     permissions:
       contents: write
     steps:
     - name: Checkout
+      id: checkout
       uses: 'actions/checkout@master'
       with:
         submodules: recursive
 
     - name: Archive
+      id: archive
       uses: 'thedoctor0/zip-release@0.7.1'
       with:
         type: 'zip'
@@ -39,7 +41,7 @@ jobs:
       with: 
         tag_name: '${{ github.event.inputs.build-ver }}-rc${{ github.event.inputs.rc-ver }}'
         release_name: 'Western Goods ${{ github.event.inputs.build-ver }} RC${{ github.event.inputs.rc-ver }}'
-        body: '${{ github.event.head_commit.message }}'
+        body_path : './CHANGELOG.md'
         prerelease: true
 
     - name: Upload Archive
