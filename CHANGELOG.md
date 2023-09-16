@@ -1,3 +1,5 @@
+## **v2.3.0 - 12/09/2023 - Minor Update**
+
 **• Additions:**
 > • Added native integration with [Device Selector Key](https://www.moddb.com/mods/stalker-anomaly/addons/mcm-required-device-selector-key) addon.
 
