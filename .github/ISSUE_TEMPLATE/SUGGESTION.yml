@@ -5,7 +5,7 @@ assignees:
   - nltp-ashes
 labels:
   - triage
-  - enhancement
+  - suggestion
 body:
   - type: textarea
     attributes:
